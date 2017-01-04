@@ -1,0 +1,46 @@
+<h1>FreeCodeCamp API Project: Image Search Abstraction</h1>
+<h2>Search Feature</h2>
+<p>This accepts a search string and an optional page offset and will return json data from imgur
+  matching your search.
+</p>
+<h3>Example URL: </h3>
+
+<span class="code">
+  <%= @request %>/api/v1/search?query=pikachu
+</span>
+<br/>
+<span class="code">
+  <%= @request %>/api/v1/search?query=hawaii&offset=2
+</span>
+
+<h3>Example Output:</h3>
+JSON is returned as follows: 
+<ul>
+  <li>link: the direct imgur.com URL for the image</li>
+  <li>image_alt_text: the title from imgur, truncated if needed for brevity </li>
+  <li>image_context: the link to the imgur post that the image appeared in </li>
+</ul>
+<p>Note: to avoid exceeding rate limits on imgur's free API, images that are part of an album are not returned; they would need a second lookup to gather their direct link.</p>
+<h4>Search returning multiple results:</h4>
+<span class="code">
+  [{"link":"http://i.imgur.com/5DDbqwo.gif","image_alt_text":"Flying Basket Pikach...","image_context":"http://imgur.com/5DDbqwo"},{"link":"http://i.imgur.com/NOTXo8T.png","image_alt_text":"Pikachu","image_context":"http://imgur.com/NOTXo8T"},{"link":"http://i.imgur.com/6zVYGXB.jpg","image_alt_text":"Finally got my first...","image_context":"http://imgur.com/6zVYGXB"}]
+</span>
+<h4>Search returning no results:</h4>
+<span class="code">
+  [{}]
+</span>
+
+<h2>Recent Search Feature</h2>
+<p>This will return JSON data for the last 5 searches.</p>
+<h3>Example URL: </h3>
+<span class="code">
+  <%= @request %>/api/v1/recent
+</span>
+<h3>Example Output: </h3>
+<span class="code">
+  {"recent_searches":[{"search_string":"pikachu","time":"2017-01-04T01:26:03.208Z"},{"search_string":"ice","time":"2017-01-04T01:25:19.386Z"},{"search_string":"ice","time":"2017-01-04T01:25:07.454Z"},{"search_string":"hawaii","time":"2017-01-04T01:23:50.964Z"},{"search_string":"hawaii","time":"2017-01-04T01:23:44.645Z"}]}
+</span>
+
+<p>This is a Rails 4 project. Feel free to visit the <a href='https://github.com/yuzu-r/fcc-abstraction' target='_blank'>github repo</a>.</p>
+<p>Learn more about the <a href='https://api.imgur.com/' target='_blank'>imgur api</a>.</p>
+<p>Learn more about <a href='https://www.freecodecamp.com' target='_blank'>FreeCodeCamp</a>.</p>

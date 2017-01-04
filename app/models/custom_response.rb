@@ -1,8 +1,7 @@
 class CustomResponse
   # a PORO to hold the weeding out logic from the imgur response
   attr_reader :custom_image_info, :image_count
-  def initialize(imgur_response)
-    puts 'initializing'
+  def initialize(imgur_response, search_params)
     custom_data = []
     image_count = 0
     imgur_response.each do |result|
@@ -19,5 +18,10 @@ class CustomResponse
     end
     @custom_image_info = custom_data
     @image_count = image_count
+    @s = Search.create(search_string: search_params)
+    if !@s.valid?
+      puts 'error in registering search_string'
+    end
   end
+
 end
